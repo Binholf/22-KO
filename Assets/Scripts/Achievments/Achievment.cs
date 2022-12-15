@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class Achievment : MonoBehaviour, Observador
 {
-    protected bool unlocked;
+    [SerializeField]protected bool unlocked;
     protected abstract void unlock();
     public abstract void atualiza(object observavel, Eventos evento);
 }

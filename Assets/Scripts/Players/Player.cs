@@ -2,6 +2,7 @@ using Assets.Scripts.Observer;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.Enemies;
 
 namespace Assets.Scripts.Players
 {
@@ -46,6 +47,23 @@ namespace Assets.Scripts.Players
                 notifica(this, Eventos.PLAYER_MORTO);
             }
         }
+
+        //Manipulando as colisões com o triger do inimigo, onde será possivel dar dano nele
+        private void OnTriggerEnter2D(Collider2D other) {
+            if(other.CompareTag("Enemy")){
+                //jogar o player um pouco pra cima
+                rigid.velocity=Vector2.zero;
+                rigid.AddForce(Vector2.up * 2, ForceMode2D.Impulse);
+                //desativar o box colider temporariamente
+                other.gameObject.GetComponent<CapsuleCollider2D>().enabled=false;
+                other.gameObject.GetComponent<BoxCollider2D>().enabled=false;
+                other.gameObject.GetComponent<Rigidbody2D>().bodyType=RigidbodyType2D.Kinematic;
+                other.gameObject.GetComponent<Rigidbody2D>().velocity=Vector2.zero;
+                //chama a função do enemigo de tomar dano
+                other.gameObject.GetComponent<Enemy>().tomarDano();
+            }
+        }
+
         
         public void cancelaRegistro(Observador obs) {
             observadores.Remove(obs);

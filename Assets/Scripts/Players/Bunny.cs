@@ -43,10 +43,13 @@ namespace Assets.Scripts.Players
         }
 
         public override void movimentação(){
+            if(!noChão && particulas.isPlaying){
+                particulas.Stop();
+            }
             //Movimentação do personagem conforme as teclas atribuidas
             //O valor atribuido ao eixo Y é referente a "gravidade" sobre o personagem 
             if(Input.GetKey(KeyCode.D)){
-                if(noChão && particulas.isPlaying || noChão && !particulas.isPlaying){
+                if(noChão && !particulas.isPlaying){
                     particulas.Play();
                 }
                 rigid.velocity = new Vector2(0, rigid.velocity.y);
@@ -57,7 +60,7 @@ namespace Assets.Scripts.Players
             }
 
             else if(Input.GetKey(KeyCode.A)){
-                if(noChão && particulas.isPlaying || noChão && !particulas.isPlaying){
+                if(noChão && !particulas.isPlaying){
                     particulas.Play();
                 }
                 rigid.velocity = new Vector2(0, rigid.velocity.y);

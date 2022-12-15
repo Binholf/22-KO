@@ -8,6 +8,7 @@ namespace Assets.Scripts.Camera
     {
         public Transform player;
         public float posIniX, posIniY;
+        public float ajusteY, ajusteX;
         public float maxX, minX, maxY, minY;
         public float velocidadeCamera;
 
@@ -21,8 +22,8 @@ namespace Assets.Scripts.Camera
             //ajustar a camera na posição do player mas afastar ela(eixo Z) para capturar a imagem
             Vector3 newPosition = player.position + new Vector3(0,0,-10);
             //pequenos ajustes na posição da camera em relação ao player  
-            newPosition.x= player.position.x + 0.8f;
-            newPosition.y= player.position.y - 0.5f;
+            newPosition.x= player.position.x + ajusteX;
+            newPosition.y= player.position.y - ajusteY;
             //move a camera, da posição atual dela até a nova posição, utilizando um "deslizamento/velocidade" definida
             newPosition = Vector3.Lerp(transform.position, newPosition, velocidadeCamera);
 

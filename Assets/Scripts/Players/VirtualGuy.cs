@@ -35,6 +35,9 @@ namespace Assets.Scripts.Players{
         }
 
         public override void movimentação(){
+            if(!noChão && particulas.isPlaying){
+                particulas.Stop();
+            }
             //mecânica para evitar que o jogador escale parede apertando infinitamente pra pular
             //adiona um temporizador que desativa os controles horizontais do player após um pulo feito sobre uma parede
             if(tempoPlanagem>0f){
@@ -45,10 +48,7 @@ namespace Assets.Scripts.Players{
                 //Movimentação do personagem conforme as teclas atribuidas
                 //O valor atribuido ao eixo Y é referente a "gravidade" sobre o personagem 
                 if(Input.GetKey(KeyCode.D)){
-                    if(noChão){
-                        particulas.Play();
-                    }
-                    if(noChão && !particulas.isPlaying ){
+                    if(noChão && !particulas.isPlaying){
                         particulas.Play();
                     }
                     rigid.velocity = new Vector2(0, rigid.velocity.y);
@@ -57,10 +57,7 @@ namespace Assets.Scripts.Players{
                     animaP.SetBool("Andando", true);      
                 }
                 else if(Input.GetKey(KeyCode.A)){
-                    if(noChão){
-                        particulas.Play();
-                    }
-                    if(noChão && !particulas.isPlaying ){
+                    if(noChão && !particulas.isPlaying){
                         particulas.Play();
                     }
                     rigid.velocity = new Vector2(0, rigid.velocity.y);

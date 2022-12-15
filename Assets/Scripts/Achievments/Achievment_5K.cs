@@ -18,6 +18,8 @@ public class Achievment_5K : Achievment
     [SerializeField]private Sprite AchievmentSprite;
 
     public int numMortes;
+    //variavel para desativar o animator
+    private bool acabou=false;
 
     private void Start() {
         FindObjectOfType<PlayerController>().resgistraObs(this);
@@ -27,10 +29,10 @@ public class Achievment_5K : Achievment
     private void Update() {
         tempo+= Time.deltaTime;
         //desligar o painel de conquista após o tempo determinado
-        if(unlocked){
+        if(unlocked && !acabou){
             if(tempo>tempoLigado){
                 AchievmentPainel.GetComponent<Animator>().SetBool("terminou",true);
-                //AchievmentPainel.SetActive(false);
+                acabou=true;
             }
         }
         
@@ -53,11 +55,15 @@ public class Achievment_5K : Achievment
 
     protected override void unlock(){
         if (!unlocked) {
+            //setar a variavel terminou como false para que, caso um achievment ja tenha sido obtido, o painel possa aparecer novamente
+            AchievmentPainel.GetComponent<Animator>().SetBool("terminou",false);
+
             //sinalizar que a conquista foi desbroqueada e passar os parametros dela(nome e imagem)
             unlocked = true;
             AchievmentText.text=nomeConquista;
             AchievmentImage.sprite=AchievmentSprite;
             AchievmentPainel.SetActive(true);
+            
             tempo=0;
         }
     }

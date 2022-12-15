@@ -14,7 +14,6 @@ namespace Assets.Scripts.Players
         private float delay=0, delayAgr;
         private bool movendo;
         public bool jogoPausado=false;
-        public int frutas;
         List<Observador> observadores;
 
         private void Awake() {
@@ -44,17 +43,14 @@ namespace Assets.Scripts.Players
                 jogadorUso.movimentação();
                 jogadorUso.Pulo();
                 jogadorUso.verificaChãoxParedes(); 
-                if(Input.GetKey(KeyCode.F)){
-                    Debug.Log(frutas);
-                }
             }
-            //se o jogo não foi pausado e o player não está vivo, então é necessario destroir aquele objeto
+            //se o jogo não foi pausado e o player não está vivo, então é necessário destroir aquele objeto
             else if(!jogadorUso.vivo && !jogoPausado){
                 Destroy(jogadorUso.gameObject, 0.40f);
                 jogoPausado=true;
             }
             //mecânica de respaw
-            //todo vez que o player morrer, será preciso instaciar um novo player caso o jogador queria continuar
+            //todo vez que o player morrer, será preciso instaciar um novo player caso o jogador queira continuar
             if(jogoPausado){
                 if(Input.GetKey(KeyCode.Space) && !jogadorUso.vivo){
                     movendo =true;
