@@ -29,7 +29,7 @@ As seguintes ferramentas/assets foram utilizadas na construção do projeto:
 - [Asset: Pixel Adventure 1](https://assetstore.unity.com/packages/2d/characters/pixel-adventure-1-155360)
 - [Asset: Pixel Adventure 2](https://assetstore.unity.com/packages/2d/characters/pixel-adventure-2-155418)
 
-## Como utilizar?
+## Como utilizar
 ### Requisito
 - Unity (Versão 2021.3.10f1)
 
@@ -41,11 +41,11 @@ git clone https://github.com/Binholf/22-KO.git
 
 ### Unity
 - Abra o projeto no Unity.
-- Selecione a scene "Fase1" no diretório Assets/Scenes
+- Selecione a scene "Fase1" no diretório Assets/Scenes.
 - Clique no ícone `Play` para rodar o jogo.
 
 ### Como jogar
-- Movimentar: A e D 
+- Movimentar: A `esquerda` e D `direita` 
 - Pular: W
 - Interagir: Space
 - Respawn: Space
